@@ -7,6 +7,16 @@ gem 'rails', '3.2.3'
 
 gem 'pg'
 
+group :development do
+  gem 'shoulda'
+  gem 'mocha'
+  gem 'capybara'
+end
+
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,4 +45,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# 
