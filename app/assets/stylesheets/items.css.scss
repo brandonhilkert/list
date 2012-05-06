@@ -39,3 +39,15 @@
     color: rgb(229,229,229);
   }
 }
+
+@media all and (max-width: 500px) {
+
+  #new_item input[type=text] {
+    width: 75%;
+  }
+
+  .lists {
+    padding-bottom: 30px;
+  }
+
+}
