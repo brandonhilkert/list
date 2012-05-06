@@ -7,7 +7,7 @@ gem 'rails', '3.2.3'
 
 gem 'pg'
 
-group :development do
+group :test do
   gem 'shoulda'
   gem 'mocha'
   gem 'capybara'
@@ -31,6 +31,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'thin'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

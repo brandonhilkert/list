@@ -1,0 +1,41 @@
+// Place all the styles related to the Items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "mixins";
+
+.lists {
+  padding: 5%;
+  padding-bottom: 55px;
+}
+
+#new_item {
+  margin: 0 auto 5% auto;
+
+  input[type=text] {
+    border: 1px solid rgb(186,186,186);
+    padding: 5px;
+    font-size: inherit;
+    @include border-radius(3px);
+    width: 80%;
+  }
+}
+
+.list {
+  ul.items {
+    margin-bottom: 20px;
+
+    li {
+      cursor: pointer;
+      margin-bottom: 5px;
+
+      a {
+        float: right;
+      }
+    }
+  }
+
+  .no-data {
+    color: rgb(229,229,229);
+  }
+}

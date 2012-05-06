@@ -1,14 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>List</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <title>List City</title>
+    <meta name="description" content="List city is a list application.">
 
-<%= yield %>
-
-</body>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width">
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <h1>List City</h1>
+      </header>
+      <div class="lists">
+        <%= yield %>
+      </div>
+      <footer>
+        <a href="http://twitter.com/brandonhilkert" target="_blank">@brandonhilkert</a>
+      </footer>
+    </div>
+  </body>
 </html>
+
+
+

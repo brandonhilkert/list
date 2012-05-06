@@ -1,0 +1,116 @@
+@import "mixins";
+
+html, body {
+  height: 100%;
+}
+
+/* basic setup */
+body {
+  color: rgb(52,52,52);
+  font-family: helvetica, arial, freesans, clean, sans-serif;
+  font-size: 20px;
+  line-height: 20px*1.618;
+}
+
+a {
+  color: rgb(52,52,52);
+  text-decoration: none;
+}
+
+.cross-off {
+  text-decoration: line-through;
+  color: rgb(150,150,150);
+}
+
+#container {
+  width: 400px;
+  margin: 20px auto;
+  position: relative;
+  min-height: 500px;
+  border: 1px solid rgb(150,150,150);
+  @include border-radius(5px);
+}
+
+.inset {
+  border: none;
+  @include border-radius(3px);
+  color: #fff;
+  text-decoration: none;
+}
+
+.button, button {
+  @extend .inset;
+  -webkit-box-shadow:  inset 1px 1px 1px rgba(0,0,0,0.2), 1px 1px 1px rgba(255,255,255,0.2);
+  display:  inline-block;
+  line-height: 36px;
+  padding: 0 10px;
+  text-shadow: rgba(0,0,0,0.3) 0px 1px 1px;
+  text-transform: uppercase;
+  background:  -webkit-linear-gradient(top, rgb(80,175,237) 0%, rgb(2,128,201) 80%);
+  margin: 0;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.button.destroy, button.destroy {
+  background:  -webkit-linear-gradient(top, rgb(150,150,150) 0%, rgb(130,130,130) 80%);
+  color:  #ddd;
+  line-height: 24px;
+}
+
+.button.destroy-all, button.destroy-all {
+  @include button(rgb(250,101,91));
+  line-height: 24px;
+}
+
+header, footer {
+  background:  -webkit-linear-gradient(top, rgb(229,229,229) 0%, rgb(186,186,186) 80%);
+  border-bottom: 1px solid rgb(150,150,150);
+  position: relative;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 30px*1.618;
+  color: #262626;
+  text-shadow: 0 1px 0 #fff;
+  width: 100%;
+}
+
+footer {
+  font-size: 12px;
+  font-weight: normal;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 45px;
+  line-height: 45px;
+  border-bottom: none;
+  border-top: 1px solid rgb(186,186,186);
+}
+
+@media all and (max-width: 500px) {
+
+  #container {
+    margin: 0 auto;
+    width: 100%;
+    min-height: 100%;
+    @include border-radius(0px);
+  }
+
+  header {
+    font-size: 20px;
+    line-height: 20px*1.618;
+  }
+
+  #addItem input[type=text] {
+    width: 75%;
+  }
+
+  .lists {
+    padding-bottom: 30px;
+  }
+
+  footer {
+    display: none;
+  }
+}

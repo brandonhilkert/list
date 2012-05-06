@@ -1,0 +1,22 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -o-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -khtml-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-shadow($values) {
+  -webkit-box-shadow: $values;
+  -moz-box-shadow: $values;
+  -o-box-shadow: $values;
+  -ms-box-shadow: $values;
+  -khtml-box-shadow: $values;
+  box-shadow: $values;
+}
+
+@mixin button($color) {
+  background: $color;
+  background: -webkit-linear-gradient(top, lighten($color, 5%) 0%, darken($color, 3%) 80%);
+}
