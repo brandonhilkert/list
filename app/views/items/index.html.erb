@@ -4,23 +4,23 @@
   });
 </script>
 
-<%= form_for(@item) do |f| %>
+<%= form_for([@list, Item.new]) do |f| %>
   <%= f.text_field :description %>
   <%= f.submit "Add", class: "button" %>
 <% end %>
 
 <div class="list">
-  <% if !@items.empty? %>
+  <% if !@list.items.empty? %>
       <ul class="items">
-        <% @items.each do |item| %>
+        <% @list.items.each do |item| %>
           <li>
             <%= item.description %>
-            <%= link_to "Delete", item_path(item), method: :delete, class: "button destroy" %>
+            <%= link_to "Delete", list_item_path(@list, item), method: :delete, class: "button destroy" %>
           </li>
         <% end %>
       </ul>
 
-    <%= link_to "Clear All", clear_items_path, method: :delete, class: "button destroy-all" %>
+    <%= link_to "Clear All", clear_list_items_path, method: :delete, class: "button destroy-all" %>
 
   <% else %>
     <div class="no-data">

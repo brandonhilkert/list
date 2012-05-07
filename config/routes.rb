@@ -1,6 +1,8 @@
 Listcity::Application.routes.draw do
-  resources :items, only: [:index, :create, :destroy] do
-    delete :clear, on: :collection
+  resources :lists, only: [:new, :create, :show] do
+    resources :items, only: [:index, :create, :destroy] do
+      delete :clear, on: :collection
+    end
   end
-  root to: 'items#index'
+  root to: 'lists#new'
 end

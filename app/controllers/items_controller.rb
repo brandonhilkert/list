@@ -1,9 +1,8 @@
 class ItemsController < ApplicationController
-  # GET /items
-  # GET /items.json
+  before_filter :get_list_from_slug
+
   def index
-    @items = Item.all
-    @item = Item.new
+    @items = @list.items
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,40 +10,42 @@ class ItemsController < ApplicationController
     end
   end
 
-  # POST /items
-  # POST /items.json
   def create
-    @item = Item.new(params[:item])
+    item = @list.items.create(params[:item])
 
     respond_to do |format|
-      if @item.save
-        format.html { redirect_to items_path, notice: 'Item was successfully created.' }
-        format.json { render json: @item, status: :created, location: @item }
+      if item.present?
+        format.html { redirect_to list_items_url(@list) }
+        format.json { render json: item, status: :created, location: item }
       else
-        format.html { redirect_to items_path }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.html { redirect_to list_items_url(@list) }
+        format.json { render json: nil, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /items/1
-  # DELETE /items/1.json
   def destroy
-    @item = Item.find(params[:id])
-    @item.destroy
+    @item = Item.where(id: params[:id], list_id: @list.id).first
+    @item.destroy if @item.present?
 
     respond_to do |format|
-      format.html { redirect_to items_url }
+      format.html { redirect_to list_items_url(@list) }
       format.json { head :no_content }
     end
   end
 
   def clear
-    Item.destroy_all
+    @list.items.destroy_all
 
     respond_to do |format|
-      format.html { redirect_to items_url }
+      format.html { redirect_to list_items_url }
       format.json { render nothing: true, status: :ok }
     end
   end
+
+  private
+
+    def get_list_from_slug
+      @list = List.find(params[:list_id])
+    end
 end

@@ -11,12 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120506131823) do
+ActiveRecord::Schema.define(:version => 20120507012011) do
 
   create_table "items", :force => true do |t|
     t.string   "description", :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "list_id",     :null => false
+  end
+
+  add_index "items", ["list_id"], :name => "index_items_on_list_id"
+
+  create_table "lists", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

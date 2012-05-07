@@ -1,21 +1,21 @@
 require "test_helper"
 
 class ItemsTest < ActionDispatch::IntegrationTest
-  test "An item can be added to the list" do
-    visit items_path
+
+  def setup
+    @list = List.create
+    visit list_items_url(@list)
+  end
+
+  test "An item can be added and removed to the list" do
     within "#new_item" do
-      fill_in "item[description]", :with => "Eggs"
+      fill_in "item[description]", with: "Eggs"
       click_button "Add"
     end
 
     assert has_content? "Eggs"
     assert_equal 1, Item.count
-  end
 
-  test "An item can be deleted from the list" do
-    Item.create(description: "Eggs")
-
-    visit items_path
     within "ul.items" do
       click_on "Delete"
     end
@@ -25,10 +25,16 @@ class ItemsTest < ActionDispatch::IntegrationTest
   end
 
   test "Can clear the whole list" do
-    Item.create(description: "Eggs")
-    Item.create(description: "Milk")
+    within "#new_item" do
+      fill_in "item[description]", with: "Eggs"
+      click_button "Add"
+    end
 
-    visit items_path
+    within "#new_item" do
+      fill_in "item[description]", with: "Milk"
+      click_button "Add"
+    end
+
     click_link "Clear All"
 
     assert has_no_content? "Eggs"
