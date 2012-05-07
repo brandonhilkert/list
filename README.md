@@ -1,6 +1,6 @@
-# List
+# List City
 
-List is a Rails-based  list application that is meant to be managed on a mobile device. This application 
+List City is a Rails-based list application that is meant to be managed on a mobile device. This application 
 came from not being able to find a simple solution to creating and managing a grocery list from week to week and 
 also be able to share it between multiple people so it can be kept up to date.
 
