@@ -3,24 +3,16 @@ class ItemsController < ApplicationController
 
   def index
     @items = @list.items
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @items.to_json(except: [:created_at, :updated_at, :list_id]) }
-    end
+    render json: @items.to_json(except: [:created_at, :updated_at]) 
   end
 
   def create
-    item = @list.items.create(params[:item])
-
-    respond_to do |format|
-      if item.present?
-        format.html { redirect_to list_items_url(@list) }
-        format.json { render json: item, status: :created, location: item }
-      else
-        format.html { redirect_to list_items_url(@list) }
-        format.json { render json: nil, status: :unprocessable_entity }
-      end
+    item = @list.items.build(params[:item])
+    
+    if item.save
+      render json: item, status: :created
+    else
+      render json: nil, status: :unprocessable_entity
     end
   end
 
@@ -28,19 +20,7 @@ class ItemsController < ApplicationController
     @item = Item.where(id: params[:id], list_id: @list.id).first
     @item.destroy if @item.present?
 
-    respond_to do |format|
-      format.html { redirect_to list_items_url(@list) }
-      format.json { head :no_content }
-    end
-  end
-
-  def clear
-    @list.items.destroy_all
-
-    respond_to do |format|
-      format.html { redirect_to list_items_url }
-      format.json { render nothing: true, status: :ok }
-    end
+    head :no_content
   end
 
   private

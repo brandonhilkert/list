@@ -4,12 +4,7 @@
 
 @import "mixins";
 
-.lists {
-  padding: 5%;
-  padding-bottom: 55px;
-}
-
-#new_item {
+#new-item {
   margin: 0 auto 5% auto;
 
   input[type=text] {
@@ -18,20 +13,19 @@
     font-size: inherit;
     @include border-radius(3px);
     width: 80%;
+    margin-right: 7px;
   }
 }
 
-.list {
-  ul.items {
-    margin-bottom: 20px;
+ul.items {
+  margin-bottom: 20px;
 
-    li {
-      cursor: pointer;
-      margin-bottom: 5px;
+  li {
+    cursor: pointer;
+    margin-bottom: 5px;
 
-      a {
-        float: right;
-      }
+    button {
+      float: right;
     }
   }
 

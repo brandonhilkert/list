@@ -14,52 +14,17 @@
 //= require jquery_ujs
 //= require lib/underscore
 //= require lib/backbone
-//= require_tree ./templates
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
 
-var Item = Backbone.Model.extend();
-
-var ItemView = Backbone.View.extend({
-  template: _.template('<a href="#lists" class="button new-list">Create New List</a>'),
-
-  render: function(){
-    this.$el.html(this.template(this.model.toJSON()));
-    return this;
-  }
-});
-
-var ItemList = Backbone.Collection.extend({
-  initialize: function(id) {
-    this.id = id;
-  },
-
-  model: Item,
-
-  url: function(){
-    return '/lists/' + this.id + '/items'
-  }
-});
-
-var NewListView = Backbone.View.extend({
-  template: _.template('<a href="#lists" class="button new-list">Create New List</a>'),
-
-  initialize: function(){
-    this.render();
-  },
-
-  render: function(){
-    this.$el.html(this.template());
-    return this;
-  }
-});
 
 var List = new (Backbone.Router.extend({
   routes: { 
     "": "index",
-    "lists/:id": "show"
-  },
-
-  initialize: function(){
-    this.newListView = new NewListView();
+    "lists/new": "new",
+    "lists/:id": "show",
+    "lists/:id/clear": "clear"
   },
 
   start: function(){
@@ -67,12 +32,30 @@ var List = new (Backbone.Router.extend({
   },
 
   index: function(){
-    $('#app').append(this.newListView.el);
+    var newListView = new NewListView();
+    $('#app').html(newListView.el);
   },
 
-  show: function(){
-    this.itemList = new ItemList(2);
-    alert('lists views');
+  new: function(){
+    var router = this;
+    var list = new MainList();
+    list.save({}, {
+      success: function(){ 
+        router.navigate("lists/" + list.id, {trigger: true});
+      }
+    });
+  },
+
+  show: function(id){
+      var itemList      = new ItemList(id),
+          itemListView  = new ItemListView({collection: itemList}),
+          addItemView   = new AddItemView({collection: itemList}),
+          clearAllView  = new ClearAllView({collection: itemList});
+
+      $('#app').html(addItemView.el)
+        .append(itemListView.el)
+        .append(clearAllView.el);
+      itemList.fetch();
   }
 }));
 
