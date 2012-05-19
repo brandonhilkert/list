@@ -11,11 +11,4 @@ class ListsController < ApplicationController
       render json: list.errors, status: :unprocessable_entity
     end
   end
-
-  def clear
-    @list = List.find(params[:id])
-    @list.items.destroy_all
-
-    render nothing: true, status: :ok
-  end
 end

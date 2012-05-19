@@ -37,11 +37,11 @@ var List = new (Backbone.Router.extend({
   },
 
   new: function(){
-    var router = this;
+    var _this = this;
     var list = new MainList();
     list.save({}, {
       success: function(){ 
-        router.navigate("lists/" + list.id, {trigger: true});
+        _this.navigate("lists/" + list.id, {trigger: true});
       }
     });
   },

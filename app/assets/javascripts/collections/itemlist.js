@@ -12,7 +12,7 @@ var ItemList = Backbone.Collection.extend({
   destroyAll: function(){
    while (this.models.length > 0) {
       this.models[0].destroy();
-    } 
+    }
   }
 
 });
