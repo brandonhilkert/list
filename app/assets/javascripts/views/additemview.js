@@ -1,6 +1,6 @@
 var AddItemView = Backbone.View.extend({
   id: 'new-item',
-  template: _.template('<input type="text" name="item" /><button>Add</button>'),
+  template: _.template('<input type="text" name="item" id="new-item" /><button>Add</button>'),
 
   initialize: function(){
     this.render();
