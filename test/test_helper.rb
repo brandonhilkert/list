@@ -3,6 +3,8 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'capybara/rails'
 
+DatabaseCleaner.strategy = :truncation
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #
@@ -16,7 +18,10 @@ end
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
+  self.use_transactional_fixtures = false
+
   def teardown
+    DatabaseCleaner.clean
     Capybara.reset_sessions!
     Capybara.use_default_driver
   end 

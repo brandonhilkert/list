@@ -11,6 +11,7 @@ group :test do
   gem 'shoulda'
   gem 'mocha'
   gem 'capybara'
+  gem 'database_cleaner'
 end
 
 group :development, :test do

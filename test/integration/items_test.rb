@@ -15,7 +15,6 @@ class ItemsTest < ActionDispatch::IntegrationTest
     end
 
     assert has_content? "Eggs"
-    debugger
     # assert_equal 1, Item.count
 
     within "ul.items" do
